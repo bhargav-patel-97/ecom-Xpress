@@ -28,14 +28,13 @@ const config = {
         If it does not exists, then it will add the new user in our DB with configured properties
     */
     if(!snapShot.exists) {
-      const {displayName, email, photoURL} = userAuth;
+      const {displayName, email} = userAuth;
       const createdAt = new Date();
 
       try {
         await userRef.set({
           displayName,
           email,
-          photoURL,
           createdAt,
           ...additionalData
         })

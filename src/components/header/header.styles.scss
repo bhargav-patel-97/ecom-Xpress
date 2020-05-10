@@ -1,20 +1,19 @@
 .header {
     height: 60px;
-    background: #aaa;
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
-    box-sizing: border-box;
+    padding: 2em;
   
     .logo-container {
       height: 100%;
-      width: 70px;
-      padding: 1em;
+      width: 50px;
     }
   
     .options {
       width: 50%;
+      margin-top: 10px;
       height: 100%;
       display: flex;
       align-items: center;
@@ -22,8 +21,14 @@
   
       .option {
         padding: 10px 15px;
-        color: #eee;
+        color: #626767;
+        font-weight: 500;
         cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+          color: #3b3b3b;
+          font-weight: 700;
+        }
       }
     }
   }
