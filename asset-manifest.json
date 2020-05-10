@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ecom-Xpress/static/css/main.ea8fb4f8.chunk.css",
+    "main.js": "/ecom-Xpress/static/js/main.b01e7013.chunk.js",
+    "main.js.map": "/ecom-Xpress/static/js/main.b01e7013.chunk.js.map",
+    "runtime-main.js": "/ecom-Xpress/static/js/runtime-main.a3ca5739.js",
+    "runtime-main.js.map": "/ecom-Xpress/static/js/runtime-main.a3ca5739.js.map",
+    "static/js/2.a86c1a99.chunk.js": "/ecom-Xpress/static/js/2.a86c1a99.chunk.js",
+    "static/js/2.a86c1a99.chunk.js.map": "/ecom-Xpress/static/js/2.a86c1a99.chunk.js.map",
+    "index.html": "/ecom-Xpress/index.html",
+    "precache-manifest.808883fdace528e3ac78326fe76db126.js": "/ecom-Xpress/precache-manifest.808883fdace528e3ac78326fe76db126.js",
+    "service-worker.js": "/ecom-Xpress/service-worker.js",
+    "static/css/main.ea8fb4f8.chunk.css.map": "/ecom-Xpress/static/css/main.ea8fb4f8.chunk.css.map",
+    "static/js/2.a86c1a99.chunk.js.LICENSE.txt": "/ecom-Xpress/static/js/2.a86c1a99.chunk.js.LICENSE.txt",
+    "static/media/4.4 crown.svg.19ef7b17.svg": "/ecom-Xpress/static/media/4.4 crown.svg.19ef7b17.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a3ca5739.js",
+    "static/js/2.a86c1a99.chunk.js",
+    "static/css/main.ea8fb4f8.chunk.css",
+    "static/js/main.b01e7013.chunk.js"
+  ]
+}
