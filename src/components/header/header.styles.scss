@@ -33,3 +33,12 @@
     }
   }
   
+  @media(max-width: 720px) {
+    .header {
+      margin-bottom: 1em;
+      .options {
+        padding: 1em;
+      }
+    }
+
+  }

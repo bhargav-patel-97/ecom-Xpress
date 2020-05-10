@@ -31,3 +31,27 @@
     }
   }
   
+  @media(max-width: 720px) {
+
+    .collection-item {
+      display: flex;
+      flex-direction: column;
+      transition: all 0.5s ease;
+      width: 25%;
+      
+      .img {
+        background-size: cover;
+      } 
+
+      &:hover {
+        width: 90%;
+        .collection-footer {
+          opacity: 1;
+        }
+      }
+    }
+      .collection-footer {
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+  }

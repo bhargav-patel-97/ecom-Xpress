@@ -4,3 +4,11 @@
     align-items: center;
     padding: 20px 80px;
   }
+  
+@media(max-width: 720px) {
+
+  .homepage {
+    padding: 20px 1em;
+  }
+}
+
