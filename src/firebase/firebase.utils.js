@@ -14,6 +14,39 @@ const config = {
     measurementId: "G-GWQET557JG"
   };
 
+  //Storing Google SignIn User to our Firestore DB
+  export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if (!userAuth) return;
+
+    //1.Pointing to user object in the Firestore DB to check if user already exists
+    const userRef = firestore.doc(`users/${userAuth.uid}`);
+    
+    //2.Pulling user via uid from Firestore 
+    const snapShot = await userRef.get(); 
+    //Snapchot.exists will be false if user does not exists
+    /*  Code below this line will check if user exists in our Firestore DB 
+        If it does not exists, then it will add the new user in our DB with configured properties
+    */
+    if(!snapShot.exists) {
+      const {displayName, email, photoURL} = userAuth;
+      const createdAt = new Date();
+
+      try {
+        await userRef.set({
+          displayName,
+          email,
+          photoURL,
+          createdAt,
+          ...additionalData
+        })
+      } catch(error) {
+        console.log('Error creating user', error.message);
+      }
+    }
+    //Returning userRef Document to use it in our App/State 
+    return userRef; 
+  }
+
   //Initializing Firebase App with config object
   firebase.initializeApp(config);
 

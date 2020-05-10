@@ -5,7 +5,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import Authenticate from './pages/authenticate/authenticate.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 class App extends React.Component {
 
@@ -23,11 +23,27 @@ class App extends React.Component {
 
   componentDidMount() {
 
-    //Firebase Auth Logic
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
-
-      console.log(user);
+    //Firebase Auth & Firestore Logic
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      //Adding New User from Google SignIn to our Firestore DB
+      //userAuth is obj returned by Firebase GoogleSignIn Auth Method
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        
+        //Pulling user data from Firestore DB via snapshot and setting our state with it.
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          }, () => {
+            console.log(this.state);
+          });
+        });
+      } else {
+          this.setState({ currentUser: userAuth });
+        }
     });
   }
 
