@@ -17,9 +17,9 @@
   @media(max-width: 720px) {
     .collection-preview {
       display: flex;
-      flex-direction: column;
     }
     .preview {
+      flex-flow: column;
       width: 100%;
     }
   }

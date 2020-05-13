@@ -15,6 +15,12 @@
 
 @media(max-width: 720px) {
     .sign-in {
-        margin-bottom: 4em;
+        width: 100%;
+        margin-bottom: 3em;
+    }
+    .buttons {
+        display: flex;
+        margin: 0.5em;
+        flex-direction: column;
     }
 }
