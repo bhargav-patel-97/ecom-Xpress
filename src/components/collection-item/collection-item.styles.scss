@@ -10,7 +10,6 @@
       width: 100%;
       height: 95%;
       background-size: cover;
-      background-position: center;
       margin-bottom: 5px;
       transition: all ease 0.5s;
     }
@@ -59,17 +58,23 @@
       flex-direction: column;
       transition: all 0.5s ease;
       width: 100%;
+      height: 870px;
       margin-bottom: 1em;
       
       &:hover {
         background-color: rgb(228, 228, 228);
-        padding: 1em;
+        padding-bottom: 1em;
+
+        .custom-button {
+          bottom: 70px;
+        }
 
         .collection-footer {
           opacity: 1;
         }
       }
     }
+
       .collection-footer {
         opacity: 0;
         transition: all 0.5s ease;
