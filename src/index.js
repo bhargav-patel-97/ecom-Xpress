@@ -13,7 +13,7 @@ import { store, persistor } from './redux/store';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename='/ecom-Xpress'>
+      <BrowserRouter>
         <PersistGate persistor={persistor}>
           <App />
         </PersistGate>
