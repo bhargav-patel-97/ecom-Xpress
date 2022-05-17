@@ -12,6 +12,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.action';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector';
+import { FlagshipProvider } from "@flagship.io/react-sdk";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -48,7 +49,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <FlagshipProvider
+      envId="c9u1allrsdfg4lbeo63g"
+      apiKey="ckHPojmsXtdzKnOMyInwSBAofUAriFSAalSnDtkM"
+      visitorData={{
+        id: "YOUR_VISITOR_ID",
+        context: {
+          // some context
+        }
+      }}
+    >
         <Header />
         <Switch>
           <Route path="/shop" component={ShopPage} />
@@ -66,7 +76,7 @@ class App extends React.Component {
           />
           <Route path="/" component={HomePage} />
         </Switch>
-      </div>
+      </FlagshipProvider>
     );
   }
 }
