@@ -14,10 +14,15 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector';
 import { FlagshipProvider } from "@flagship.io/react-sdk";
 
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
-
+  
+  
   componentDidMount() {
+      
+    //Axios
+
     //From Redux
     const {setCurrentUser} = this.props;
 
@@ -50,10 +55,10 @@ class App extends React.Component {
   render() {
     return (
       <FlagshipProvider
-      envId="c9u1allrsdfg4lbeo63g"
-      apiKey="ckHPojmsXtdzKnOMyInwSBAofUAriFSAalSnDtkM"
+      envId="c966skjgh76g2nhhr4hg"
+      apiKey="oGCDggUYvhGqgGBYmLsKXyhJQAjTjoGEKgumHrjc"
       visitorData={{
-        id: "YOUR_VISITOR_ID",
+        id: null,
         context: {
           // some context
         }

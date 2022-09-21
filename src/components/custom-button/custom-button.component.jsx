@@ -4,10 +4,15 @@ import { useFsFlag } from "@flagship.io/react-sdk";
 
 
 const CustomButton = ({ children, isGoogleSignIn, inverted, ...otherProps }) => {
-    const flag = useFsFlag("backgroundColor","green")
-    const flagExists = flag.exists();
-    const flagMetadata = flag.metadata;
     
+    //********************[ flagship.io ]********************
+    const flag = useFsFlag("bg-color","rgb(137, 207, 240)")
+    //const flagExists = flag.exists();
+    console.log(flag.getValue());
+    //const flagMetadata = flag.metadata;
+    //console.log(flagMetadata);
+
+
     return (    
         <button 
             className={`${inverted ? 'inverted' : ''}
