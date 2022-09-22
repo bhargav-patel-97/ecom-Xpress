@@ -13,6 +13,8 @@ import { setCurrentUser } from './redux/user/user.action';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/user/user.selector';
 import { FlagshipProvider } from "@flagship.io/react-sdk";
+import mixpanel from 'mixpanel-browser';
+
 
 
 class App extends React.Component {
@@ -55,14 +57,29 @@ class App extends React.Component {
   render() {
     return (
       <FlagshipProvider
-      envId="c966skjgh76g2nhhr4hg"
-      apiKey="oGCDggUYvhGqgGBYmLsKXyhJQAjTjoGEKgumHrjc"
-      visitorData={{
-        id: null,
-        context: {
-          // some context
-        }
-      }}
+        envId="c966skjgh76g2nhhr4hg"
+        apiKey="oGCDggUYvhGqgGBYmLsKXyhJQAjTjoGEKgumHrjc"
+        visitorData={{
+          id: null,
+          context: {
+            // some context
+          }
+        }}
+        //********************[ Flagship Method to Implement Mixpanel ]********************
+        onUserExposure={({ flagData, visitorData }) => {
+          mixpanel.track('Init New Flagship Visitor', {
+            distinct_id: visitorData.visitorId,
+            experimentId: flagData.metadata.campaignId,
+            key: flagData.key,
+            value: flagData.value,
+            anonymousId: visitorData.anonymousId,
+            baseUrl: window.location.origin,
+            visitorId: visitorData.visitorId,
+            variationID: flagData.metadata.variationId,
+            ...flagData.metadata
+          })}
+    }
+    
     >
         <Header />
         <Switch>

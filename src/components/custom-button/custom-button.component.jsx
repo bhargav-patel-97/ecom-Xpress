@@ -1,42 +1,41 @@
 import React from 'react';
 import './custom-button.styles.scss';
+
+//********************[ Import Flagship & Mixpanel ]********************
 import { useFlagship, HitType } from "@flagship.io/react-sdk";
+import mixpanel from 'mixpanel-browser';
 
 
-const CustomButton = ({ children, isGoogleSignIn, inverted, ...otherProps }) => {
+//********************[ Mixpanel ]********************
+mixpanel.init('1cde3a30d8e169d3da3462b1e58c16a5', {debug: true}); 
+
+const CustomButton = ({ children, isGoogleSignIn, inverted, itemData, ...otherProps }) => {
     
-    //********************[ flagship.io ]********************
+    //********************[ Initializing Flagship & Fetching flag ]********************
     const { getFlag } = useFlagship()
     const flag = getFlag("bg-color","rgb(137, 207, 240)")
     const { hit: fsHit } = useFlagship()
 
-    console.log(flag.getValue());
-    //const flagMetadata = flag.metadata;
-    //console.log(flagMetadata);
-
-    //********************[ Handling click ]********************
-    // function handleClick(){
-    //     console.log("Hello!");
-    //   };
-
     return (    
         <button 
-            className={`${inverted ? 'inverted' : ''}
-                ${ isGoogleSignIn ? 'google-sign-in' : '' } custom-button`}
-            {...otherProps}
-            style={{
-                backgroundColor: flag.getValue()
-            }}
-            onClick={(e)=>{
-                e.preventDefault();
-                fsHit.send({
-              type: HitType.TRANSACTION, //or "TRANSACTION"
-              transactionId: "#12345",
-              affiliation: "Cart Value",
-              currency: "USD",
-              itemCount: 1,
-              totalRevenue: 10
+        className={`${inverted ? 'inverted' : ''}
+        ${ isGoogleSignIn ? 'google-sign-in' : '' } custom-button`}
+        {...otherProps}
+        style={{
+            backgroundColor: flag.getValue()
+        }}
+        onClick={()=>{
+            fsHit.send({
+                type: HitType.TRANSACTION, //or "TRANSACTION"
+                transactionId: "#12345",
+                affiliation: "Cart Value",
+                currency: "USD",
+                itemCount: 1,
+                totalRevenue: itemData.price
             })
+
+            //Sending Click Event Data to Mixpanel
+            mixpanel.track('Item Added to Cart', {'Name': itemData.name,"Id":itemData.Id ,'Price': itemData.price});
             }}
         >
             {children}
