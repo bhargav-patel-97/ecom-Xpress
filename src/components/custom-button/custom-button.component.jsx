@@ -1,17 +1,18 @@
 import React from 'react';
 import './custom-button.styles.scss';
 
-//********************[ Import Flagship & Mixpanel ]********************
+//––––––––––––––––––––––––––––[ Import Flagship & Mixpanel ]––––––––––––––––––––––––––––//
 import { useFlagship, HitType } from "@flagship.io/react-sdk";
 import mixpanel from 'mixpanel-browser';
 
 
-//********************[ Mixpanel ]********************
+//––––––––––––––––––––––––––––[ Initializing Mixpanel ]––––––––––––––––––––––––––––//
 mixpanel.init('1cde3a30d8e169d3da3462b1e58c16a5', {debug: true}); 
+
 
 const CustomButton = ({ children, isGoogleSignIn, inverted, itemData, ...otherProps }) => {
     
-    //********************[ Initializing Flagship & Fetching flag ]********************
+    //––––––––––––––––––––––––––––[ Initializing Flagship & Fetching the flag (Variation) ]––––––––––––––––––––––––––––//
     const { getFlag } = useFlagship()
     const flag = getFlag("bg-color","rgb(137, 207, 240)")
     const { hit: fsHit } = useFlagship()
@@ -24,6 +25,8 @@ const CustomButton = ({ children, isGoogleSignIn, inverted, itemData, ...otherPr
         style={{
             backgroundColor: flag.getValue()
         }}
+
+        //––––––––––––––––––––––––––––[ Sending Event data to Flagship (HIT) ]––––––––––––––––––––––––––––//
         onClick={()=>{
             fsHit.send({
                 type: HitType.TRANSACTION, //or "TRANSACTION"
@@ -34,7 +37,7 @@ const CustomButton = ({ children, isGoogleSignIn, inverted, itemData, ...otherPr
                 totalRevenue: itemData.price
             })
 
-            //Sending Click Event Data to Mixpanel
+            //––––––––––––––––––––––––––––[ Sending Event data to MixPanel ]––––––––––––––––––––––––––––//
             mixpanel.track('Item Added to Cart', {'Name': itemData.name,"Id":itemData.Id ,'Price': itemData.price});
             }}
         >

@@ -16,7 +16,6 @@ import { FlagshipProvider } from "@flagship.io/react-sdk";
 import mixpanel from 'mixpanel-browser';
 
 
-
 class App extends React.Component {
   unsubscribeFromAuth = null;
   
@@ -65,7 +64,7 @@ class App extends React.Component {
             // some context
           }
         }}
-        //********************[ Flagship Method to Implement Mixpanel ]********************
+        //––––––––––––––––––––––––––––[ FS Callback Method to Init Mixpanel / Any 3rd Party Tool ]––––––––––––––––––––––––––––/
         onUserExposure={({ flagData, visitorData }) => {
           mixpanel.track('Init New Flagship Visitor', {
             distinct_id: visitorData.visitorId,
